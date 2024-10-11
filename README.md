@@ -9,5 +9,6 @@ Bem-vindo ao repositório de estudos da **Equipe Harpia**. Este repositório ser
 ### 1. Clonar o repositório
 
 ```bash
-git clone https://github.com/harpia-drones/Estudos.git
+git clone git@github.com:harpia-drones/Estudos.git
 cd Estudos
+docker run -it --rm ros2-humble-gazebo
