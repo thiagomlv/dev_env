@@ -1,6 +1,6 @@
 # Repositório de Estudos - Docker, ROS2 e Gazebo
 
-    Bem-vindo ao repositório de estudos da **Equipe Harpia**. Este repositório centraliza o conhecimento sobre Docker, ROS2 e Gazebo.
+Bem-vindo ao repositório de estudos da **Equipe Harpia**. Este repositório centraliza o conhecimento sobre Docker, ROS2 e Gazebo.
 
 ## Como usar este repositório
 
