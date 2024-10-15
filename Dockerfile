@@ -4,7 +4,6 @@ FROM osrf/ros:humble-desktop-full-jammy AS base
 # Shell to be used during the build process and the container's default
 SHELL ["/bin/bash", "-c"]
 
-
 # Set the environment variables
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
@@ -24,4 +23,6 @@ RUN apt-get update && \
 
 # Source ROS 2 setup
 RUN echo 'source /opt/ros/humble/setup.bash' >> /root/.bashrc
+RUN mkdir -p /root/estudos_ws/src
+WORKDIR /root/estudos_ws
 
