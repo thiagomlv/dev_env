@@ -15,7 +15,7 @@ Bem-vindo ao repositório de estudos da **Equipe Harpia**. Este repositório cen
 
 Use o Docker Compose para construir e iniciar o ambiente:
 
-    docker compose up -d
+    docker-compose up -d
 
 ### 3. Acessar o container
 
