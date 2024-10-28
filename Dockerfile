@@ -8,10 +8,14 @@ SHELL ["/bin/bash", "-c"]
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
     ROS_DISTRO=humble \
-    DEBIAN_FRONTEND=noninteractive
+    DEBIAN_FRONTEND=noninteractive \
+    DISPLAY=host.docker.internal:0.0 \
+    NO_AT_BRIDGE=1 \ 
+    GDK_SCALE=1.25\
+    GDK_DPI_SCALE=1
 
 # Update and upgrade system
-RUN apt update && DEBIAN_FRONTEND=noninteractive apt upgrade -y
+RUN sudo apt update && DEBIAN_FRONTEND=noninteractive apt upgrade -y
 
 # Install Gazebo Fortress  
 RUN apt-get update && \
@@ -21,8 +25,50 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install -y ignition-fortress
 
-# Source ROS 2 setup
-RUN echo 'source /opt/ros/humble/setup.bash' >> /root/.bashrc
-RUN mkdir -p /root/estudos_ws/src
-WORKDIR /root/estudos_ws
+# Install gedit
+RUN apt-get update && \
+    apt-get install -y gedit
 
+######################################### Installing Terminator #########################################
+
+# Install Terminator
+RUN apt-get update && \
+    apt-get install -y terminator \
+    gsettings-desktop-schemas \
+    gnome-settings-daemon \
+    dbus-x11 \
+    libgtk-3-bin \ 
+    libgtk-3-dev \
+    at-spi2-core \
+    gdk-pixbuf2.0-bin && \
+    apt-get install -y --reinstall librsvg2-common \
+    libgdk-pixbuf2.0-0
+      
+# Create the Terminator configuration directory and create the configuration file
+RUN mkdir -p /etc/xdg/terminator && \
+    touch /etc/xdg/terminator/config
+
+#########################################################################################################
+
+# Remove unused apt files after installation processes 
+RUN rm -rf /var/lib/apt/lists/* 
+
+############################################## ROS2 Setup ###############################################
+
+# Create the workspace
+RUN mkdir -p /root/estudos_ws/src 
+
+# Define the estudos_ws directory as the work directory
+WORKDIR /root/estudos_ws/
+
+# Build the workspace
+RUN colcon build
+
+# Enable ros2 features
+RUN echo 'source /opt/ros/humble/setup.bash' >> /root/.bashrc
+
+# Enable estudos_ws features
+RUN echo 'source /root/estudos_ws/install/setup.bash' >> /root/.bashrc
+
+# Enable colcon auto complete
+RUN echo '/usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash' >> /root/.bashrc
