@@ -1,9 +1,11 @@
 services:
   estudos_ws:
-    container_name: ros2-humble-gazebo
+    container_name: harpia
     build:    
       context: .  #Dockerfile location
     privileged: True  #Allows acess to host hardware 
+    environment:
+      - DISPLAY=host.docker.internal:0.0
     volumes:  
       - ./estudos_ws/src:/root/estudos_ws/src #Links host and container files
       - /etc/localtime:/etc/localtime #Sets timezone 

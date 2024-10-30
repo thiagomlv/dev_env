@@ -1,13 +1,13 @@
 # Repositório de Estudos - Docker, ROS2 e Gazebo
 
-Bem-vindo ao repositório de estudos da **Equipe Harpia**. Este repositório centraliza o conhecimento sobre Docker, ROS2 e Gazebo.
+Bem-vindo ao repositório de estudos. Este repositório centraliza o conhecimento sobre Docker, ROS2 e Gazebo.
 
 ## Como usar este repositório
 
 ### 1. Clonar o repositório
 
 
-    git clone git@github.com:harpia-drones/Estudos.git
+    git clone git@github.com:thiagomlv/dev-env.git
     cd Estudos
 
 
@@ -21,7 +21,7 @@ Use o Docker Compose para construir e iniciar o ambiente:
 
 Para acessar o terminal do container, utilize:
 
-    docker exec -it ros2-humble-gazebo /bin/bash
+    docker exec -it harpia /bin/bash
 
 ## Estrutura do diretório
 

@@ -9,10 +9,7 @@ ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
     ROS_DISTRO=humble \
     DEBIAN_FRONTEND=noninteractive \
-    DISPLAY=host.docker.internal:0.0 \
-    NO_AT_BRIDGE=1 \ 
-    GDK_SCALE=1.25\
-    GDK_DPI_SCALE=1
+    NO_AT_BRIDGE=1 
 
 # Update and upgrade system
 RUN sudo apt update && DEBIAN_FRONTEND=noninteractive apt upgrade -y
@@ -71,4 +68,5 @@ RUN echo 'source /opt/ros/humble/setup.bash' >> /root/.bashrc
 RUN echo 'source /root/estudos_ws/install/setup.bash' >> /root/.bashrc
 
 # Enable colcon auto complete
+RUN sudo chmod +x /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
 RUN echo '/usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash' >> /root/.bashrc
